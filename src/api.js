@@ -1,13 +1,26 @@
 const axios = require('axios');
-const { url, headers, max_iter, max_retries } = require('./constants')
-const { sleep, getToken } = require('./utils')
+const {
+    url,
+    headers,
+    max_iter,
+    max_retries
+} = require('./constants')
+const {
+    sleep,
+    getToken
+} = require('./utils')
 
 
-async function image_search({ query, moderate, retries, iterations }) {
+async function image_search({
+    query,
+    moderate,
+    retries,
+    iterations
+}) {
 
     let reqUrl = url + 'i.js';
     let keywords = query
-    let p = moderate ? 1 : -1;      // by default moderate false
+    let kp = moderate ? -1 : -2; // by default moderate false
     let attempt = 0;
     if (!retries) retries = max_retries; // default to max if none provided
     if (!iterations) iterations = max_iter; // default to max if none provided
@@ -19,12 +32,12 @@ async function image_search({ query, moderate, retries, iterations }) {
         let token = await getToken(keywords);
 
         let params = {
-            "l": "wt-wt",
+            "kl": "us-en",
             "o": "json",
             "q": keywords,
             "vqd": token,
             "f": ",,,",
-            "p": "" + (p)
+            "kp": kp
         }
 
         let data = null;
@@ -58,7 +71,7 @@ async function image_search({ query, moderate, retries, iterations }) {
                 }
 
             }
-            
+
             results = [...results, ...data.results]
             if (!data.next) {
                 return new Promise((resolve, reject) => {
@@ -79,30 +92,35 @@ async function image_search({ query, moderate, retries, iterations }) {
 
 
 
-async function* image_search_generator({ query, moderate, retries, iterations }) {
+async function* image_search_generator({
+    query,
+    moderate,
+    retries,
+    iterations
+}) {
 
     let reqUrl = url + 'i.js';
     let keywords = query
-    let p = moderate ? 1 : -1;      // by default moderate false
+    let kp = moderate ? -1 : -2; // by default moderate false
     let attempt = 0;
     if (!retries) retries = max_retries; // default to max if none provided
     if (!iterations) iterations = max_iter; // default to max if none provided
 
-    
+
 
     try {
 
         let token = await getToken(keywords);
 
         let params = {
-            "l": "wt-wt",
+            "kl": "us-en",
             "o": "json",
             "q": keywords,
             "vqd": token,
             "f": ",,,",
-            "p": "" + (p)
+            "kp": kp
         }
-        
+
         let itr = 0;
 
 
@@ -126,9 +144,9 @@ async function* image_search_generator({ query, moderate, retries, iterations })
                     console.error(error)
                     attempt += 1;
                     if (attempt > retries) {
-                        
-                        yield await new Promise((resolve, reject) => {                            
-                            reject('attempt finished')                            
+
+                        yield await new Promise((resolve, reject) => {
+                            reject('attempt finished')
                         })
 
                     }
@@ -137,9 +155,9 @@ async function* image_search_generator({ query, moderate, retries, iterations })
                 }
 
             }
-            
 
-            yield await new Promise((resolve, reject) => {                
+
+            yield await new Promise((resolve, reject) => {
                 resolve(data.results)
             })
 
@@ -151,12 +169,13 @@ async function* image_search_generator({ query, moderate, retries, iterations })
 
     } catch (error) {
         console.error(error);
-    }    
+    }
 
 }
 
 
 
-module.exports = { image_search, image_search_generator };
-
-
+module.exports = {
+    image_search,
+    image_search_generator
+};

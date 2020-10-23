@@ -13,7 +13,7 @@ module.exports = {
     max_iter : 2,
     max_retries : 2,
     params_template :{
-        l: "wt-wt",
+        l: "us-en",
         o: "json",
         q: null,
         vqd: null,
