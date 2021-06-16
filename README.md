@@ -51,3 +51,6 @@ Please feel free to report any issues or feature requests.
 ### note
 
 DuckDuckGo provides an instant answer API. This package does not use this route. This package mocks the browser behaviour using the same request format. Use it wisely.
+
+### 已發佈到NPMJS 上
+參考這教學 https://blog.pulipuli.info/2019/06/npm-how-to-create-anpmscoped-package.html

@@ -19,6 +19,11 @@
     "api"
   ],
   "author": "Kshitij Mhatre (https://github.com/KshitijMhatre)",
+  "contributors": [
+    {
+      "name": "Sad"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1"
