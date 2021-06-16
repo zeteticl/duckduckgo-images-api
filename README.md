@@ -54,3 +54,5 @@ DuckDuckGo provides an instant answer API. This package does not use this route.
 
 ### 已發佈到NPMJS 上
 參考這教學 https://blog.pulipuli.info/2019/06/npm-how-to-create-anpmscoped-package.html
+npm adduser
+npm publish --access public
