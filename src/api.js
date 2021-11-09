@@ -141,7 +141,7 @@ async function* image_search_generator({
                     break;
 
                 } catch (error) {
-                    console.error(error)
+                    console.error('duckduckgo error line144')
                     attempt += 1;
                     if (attempt > retries) {
 
@@ -168,7 +168,7 @@ async function* image_search_generator({
         }
 
     } catch (error) {
-        console.error(error);
+        console.error('duckduckgo error line171');
     }
 
 }
