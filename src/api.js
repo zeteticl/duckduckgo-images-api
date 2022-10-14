@@ -59,7 +59,7 @@ async function image_search({
                     break;
 
                 } catch (error) {
-                    console.error(error)
+                    //console.error(error)
                     attempt += 1;
                     if (attempt > retries) {
                         return new Promise((resolve, reject) => {
@@ -84,7 +84,7 @@ async function image_search({
         }
 
     } catch (error) {
-        console.error(error);
+        //console.error(error);
     }
     return results;
 
