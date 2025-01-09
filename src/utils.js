@@ -20,7 +20,7 @@ async function getToken(keywords) {
         token = res.data.match(/vqd=([\d-]+)\&/)[1]
 
     } catch (error) {
-        console.error('error: duckgo #23')
+        console.error(`error: duckgo #23 Keywords:  ${keywords} \nerror`)
     }
 
     return new Promise((resolve, reject) => {
