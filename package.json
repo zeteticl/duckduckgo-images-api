@@ -1,6 +1,6 @@
 {
   "name": "@zetetic/duckduckgo-images-api",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "DuckDuckGo image-search api for node",
   "main": "index.js",
   "scripts": {
